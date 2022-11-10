@@ -6,12 +6,26 @@ const filter = {
   ],
 };
 
-function checkSignIn() {
-  document.getElementById("signInContainer");
+
+
+function displayAvailableTimes() {
+    function checkSignIn() {
+      let signInButton = document.getElementById("btnSignIn");
+      if (signInButton !== null) {
+          alert("Please sign in to use this extension");
+      }
+    }
+  checkSignIn();
+ 
 }
 
-chrome.action.onClicked.addListener(function (tab) {
+chrome.action.onClicked.addListener((tab) => {
   if (tab.url.includes("clients.mindbodyonline.com/classic/mainclass")) {
-    console.log("Hello");
+    console.log()
+     chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      function: displayAvailableTimes
+    });
   }
 });
+
